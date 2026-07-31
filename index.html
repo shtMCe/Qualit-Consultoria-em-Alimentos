@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,35 +18,40 @@
     
     <link rel="stylesheet" href="style.css">
     
-    <!-- Preconnect for performance -->
+    <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="bg-surface text-base antialiased">
+    <!-- Efeito de textura Premium (Grain) -->
+    <div class="noise-overlay pointer-events-none"></div>
 
-    <!-- Header / Navbar -->
-    <header class="header" id="header">
-        <div class="container header-container">
-            <a href="#" class="logo" aria-label="Voltar ao topo">
-                <span class="logo-text">Qualité</span>
-                <img src="Logo.jpeg" alt="Logo da Qualité Consultoria em Alimentos" class="logo-image" loading="lazy">
-                <span class="logo-dot">.</span>
+    <!-- Header / Navbar Glassmorphism -->
+    <header class="header fixed w-full z-50 transition-all duration-300" id="header">
+        <div class="container flex justify-between align-center h-full">
+            <a href="#" class="logo flex align-center gap-sm magnetic-element" aria-label="Voltar ao topo">
+                <!-- Se houver logo imagem real, descomente e ajuste -->
+                <!-- <img src="Logo.jpeg" alt="Logo Qualité" class="logo-image" loading="lazy"> -->
+                <span class="logo-text font-bold text-xl tracking-tight">Qualité<span class="text-accent">.</span></span>
             </a>
             
             <nav class="navbar" id="navbar">
-                <ul class="nav-list">
-                    <li><a href="#hero" class="nav-link active">Início</a></li>
-                    <li><a href="#about" class="nav-link">Sobre Nós</a></li>
-                    <li><a href="#services" class="nav-link">Soluções</a></li>
-                    <li><a href="#process" class="nav-link">Metodologia</a></li>
-                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <ul class="nav-list flex gap-lg">
+                    <li><a href="#hero" class="nav-link active" data-cursor="pointer">Início</a></li>
+                    <li><a href="#about" class="nav-link" data-cursor="pointer">Sobre Nós</a></li>
+                    <li><a href="#services" class="nav-link" data-cursor="pointer">Soluções</a></li>
+                    <li><a href="#process" class="nav-link" data-cursor="pointer">Metodologia</a></li>
+                    <li><a href="#faq" class="nav-link" data-cursor="pointer">FAQ</a></li>
                 </ul>
             </nav>
             
-            <div class="header-actions">
-                <a href="#contato" class="btn btn-primary btn-sm">Agendar uma Conversa</a>
+            <div class="header-actions flex align-center gap-md">
+                <a href="#contato" class="btn btn-primary btn-sm magnetic-btn">
+                    <span class="btn-text">Agendar uma Conversa</span>
+                </a>
                 <button class="mobile-menu-toggle" aria-label="Abrir menu" aria-expanded="false">
-                    <span class="hamburger"></span>
+                    <div class="hamburger"></div>
                 </button>
             </div>
         </div>
@@ -54,443 +59,304 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="hero-bg-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-            </div>
-            <div class="container hero-container">
-                <div class="hero-content reveal-fade-up">
-                    <h1 class="headline">
-                        Blinde seu Negócio Contra <span>Multas e Interdições</span>
+        <section id="hero" class="hero relative flex align-center min-h-screen overflow-hidden">
+            <!-- Glow Backgrounds (Linear Style) -->
+            <div class="hero-glow hero-glow-1 absolute blur-3xl rounded-full opacity-30 pointer-events-none"></div>
+            <div class="hero-glow hero-glow-2 absolute blur-3xl rounded-full opacity-20 pointer-events-none"></div>
+            
+            <div class="container grid grid-2 gap-xl relative z-10">
+                <div class="hero-content flex-col gap-lg">
+                    <div class="badge fade-up">Assessoria Especializada</div>
+                    <h1 class="headline font-extrabold text-display leading-tight fade-up delay-100">
+                        Blinde seu Negócio Contra <span class="text-gradient">Multas e Interdições</span>
                     </h1>
-                    <p class="subheadline">
-                        Transformamos as exigências da ANVISA e MAPA em lucro e segurança operacional. Elimine o risco de contaminações, reduza desperdícios e impulsione a credibilidade da sua marca hoje mesmo.
+                    <p class="subheadline text-lg text-muted max-w-md fade-up delay-200">
+                        Transformamos as exigências da ANVISA e MAPA em lucro e segurança operacional. Elimine o risco de contaminações e impulsione a credibilidade da sua marca.
                     </p>
-                    <div class="hero-buttons">
-                        <a href="#contato" class="btn btn-primary">Quero Proteger Minha Empresa</a>
-                        <a href="#services" class="btn btn-outline">Ver Soluções Estratégicas</a>
+                    <div class="hero-buttons flex gap-md fade-up delay-300">
+                        <a href="#contato" class="btn btn-primary btn-lg magnetic-btn">Quero Proteger Minha Empresa</a>
+                        <a href="#services" class="btn btn-outline btn-lg magnetic-btn">Ver Soluções Estratégicas</a>
                     </div>
                 </div>
                 
-                <div class="hero-visual reveal-fade-left">
-                    <div class="image-wrapper">
-                        <!-- Imagem representativa profissional -->
+                <div class="hero-visual relative reveal-right">
+                    <div class="image-wrapper rounded-2xl overflow-hidden shadow-elegant parallax-wrap">
                         <picture>
-                            <img src="mao.webp" alt="Equipe da Qualité Consultoria em Alimentos" loading="lazy">
+                            <img src="mao.webp" alt="Equipe da Qualité Consultoria em Alimentos" class="parallax-img w-full h-full object-cover" loading="lazy">
                         </picture>
-                        <div class="experience-badge">
-                            <span class="badge-number">14+</span>
-                            <span class="badge-text">Anos de<br>Resultados</span>
-                        </div>
+                    </div>
+                    <div class="experience-badge absolute glass-panel flex align-center gap-md shadow-elegant magnetic-element floating-anim">
+                        <span class="badge-number font-bold text-gradient text-3xl">14+</span>
+                        <span class="badge-text text-sm font-semibold leading-tight text-dark">Anos de<br>Resultados</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Faixa de Confiança (Trust Banner) -->
-        <section id="trust" class="trust-banner">
-            <div class="container trust-grid">
-                <div class="trust-card reveal-fade-up" style="transition-delay: 0.1s;">
-                    <div class="trust-icon">
+        <!-- Faixa de Confiança -->
+        <section id="trust" class="trust-banner bg-dark text-white relative z-20 py-xl">
+            <div class="container grid grid-4 gap-lg">
+                <div class="trust-card fade-up">
+                    <div class="trust-icon text-accent mb-sm">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     </div>
-                    <h3>14+ Anos em Campo</h3>
-                    <p>Resultados reais contra riscos operacionais</p>
+                    <h3 class="font-bold text-md mb-xs">14+ Anos em Campo</h3>
+                    <p class="text-sm text-gray-400">Resultados reais contra riscos operacionais</p>
                 </div>
-                <div class="trust-card reveal-fade-up" style="transition-delay: 0.2s;">
-                    <div class="trust-icon">
+                <div class="trust-card fade-up delay-100">
+                    <div class="trust-icon text-accent mb-sm">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
                     </div>
-                    <h3>Metodologia Validada</h3>
-                    <p>Base técnica implacável testada na prática</p>
+                    <h3 class="font-bold text-md mb-xs">Metodologia Validada</h3>
+                    <p class="text-sm text-gray-400">Base técnica implacável testada na prática</p>
                 </div>
-                <div class="trust-card reveal-fade-up" style="transition-delay: 0.3s;">
-                    <div class="trust-icon">
+                <div class="trust-card fade-up delay-200">
+                    <div class="trust-icon text-accent mb-sm">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </div>
-                    <h3>Assessoria Direta</h3>
-                    <p>Sem intermediários, foco absoluto no seu lucro</p>
+                    <h3 class="font-bold text-md mb-xs">Assessoria Direta</h3>
+                    <p class="text-sm text-gray-400">Sem intermediários, foco absoluto no seu lucro</p>
                 </div>
-                <div class="trust-card reveal-fade-up" style="transition-delay: 0.4s;">
-                    <div class="trust-icon">
+                <div class="trust-card fade-up delay-300">
+                    <div class="trust-icon text-accent mb-sm">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     </div>
-                    <h3>Tranquilidade Jurídica</h3>
-                    <p>Sua operação 100% à prova de fiscais</p>
+                    <h3 class="font-bold text-md mb-xs">Tranquilidade Jurídica</h3>
+                    <p class="text-sm text-gray-400">Sua operação 100% à prova de fiscais</p>
                 </div>
             </div>
         </section>
 
-        <!-- Sobre a Empresa -->
-        <section id="about" class="section about">
-            <div class="container about-container">
-                <div class="about-image-col reveal-fade-right">
-                    <figure class="about-figure">
-                        <img src="AlessandraGenari.jpeg" alt="Diretoria Qualité atuando em auditoria e validação de segurança" loading="lazy">
-                        <img src="RicardoGenari.jpeg" alt="Diretoria Qualité atuando em auditoria e validação de segurança" loading="lazy">
-                        <figcaption class="about-caption">Engenheiros Alexandra e Ricardo Genari</figcaption>
-                    </figure>
+        <!-- Sobre Nós -->
+        <section id="about" class="section py-2xl overflow-hidden">
+            <div class="container grid grid-2 gap-2xl align-center">
+                <div class="about-image-col relative reveal-left">
+                    <div class="image-grid grid grid-2 gap-sm">
+                        <img src="AlessandraGenari.jpeg" alt="Alexandra Genari" class="rounded-xl shadow-elegant object-cover h-full parallax-item" loading="lazy">
+                        <img src="RicardoGenari.jpeg" alt="Ricardo Genari" class="rounded-xl shadow-elegant object-cover h-full parallax-item translate-y-lg" loading="lazy">
+                    </div>
+                    <div class="about-caption absolute glass-panel rounded-lg shadow-elegant mt-md font-medium text-sm">
+                        Engenheiros Alexandra e Ricardo Genari (UFV)
+                    </div>
                 </div>
-                <div class="about-text-col reveal-fade-left">
-                    <span class="section-tag">Sua Empresa Mais Segura</span>
-                    <h2 class="section-title">Você não pode deixar a reputação da sua marca nas mãos da sorte.</h2>
-                    <p class="section-desc">
+                <div class="about-text-col flex-col gap-md reveal-right">
+                    <span class="section-tag tracking-wider text-accent font-bold text-sm uppercase">Sua Empresa Mais Segura</span>
+                    <h2 class="section-title text-3xl font-extrabold leading-tight text-dark">Você não pode deixar a reputação da sua marca nas mãos da sorte.</h2>
+                    <p class="text-muted text-lg">
                         Um único lote contaminado ou uma visita surpresa da fiscalização pode destruir anos de trabalho em minutos. Desde 2009, a Qualité atua como um verdadeiro escudo protetor para indústrias, agroindústrias e redes de food service.
                     </p>
-                    <p class="section-desc">
-                        Fundada por <strong>Alexandra Genari</strong> e <strong>Ricardo Genari</strong>, engenheiros de alimentos formados pela UFV, não entregamos apenas papéis para ficarem na gaveta. Nós entramos na sua operação, identificamos as falhas invisíveis que estão corroendo seu caixa e construímos processos que garantem aprovação máxima em qualquer auditoria.
+                    <p class="text-muted text-lg">
+                        Fundada por <strong>Alexandra Genari</strong> e <strong>Ricardo Genari</strong>, não entregamos apenas papéis para ficarem na gaveta. Identificamos falhas invisíveis e construímos processos que garantem aprovação máxima em auditorias.
                     </p>
                     
-                    <div class="values-grid">
-                        <div class="value-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Transparência Absoluta</span>
+                    <div class="values-grid grid grid-2 gap-md mt-lg">
+                        <div class="value-item flex align-center gap-sm text-dark font-semibold">
+                            <div class="icon-box bg-accent-light text-accent rounded-full p-xs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            Transparência Absoluta
                         </div>
-                        <div class="value-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Foco em Lucratividade</span>
+                        <div class="value-item flex align-center gap-sm text-dark font-semibold">
+                            <div class="icon-box bg-accent-light text-accent rounded-full p-xs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            Foco em Lucratividade
                         </div>
-                        <div class="value-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Rigor Científico</span>
+                        <div class="value-item flex align-center gap-sm text-dark font-semibold">
+                            <div class="icon-box bg-accent-light text-accent rounded-full p-xs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            Rigor Científico
                         </div>
-                        <div class="value-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Blindagem de Marca</span>
+                        <div class="value-item flex align-center gap-sm text-dark font-semibold">
+                            <div class="icon-box bg-accent-light text-accent rounded-full p-xs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                            Blindagem de Marca
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Serviços -->
-        <section id="services" class="section services bg-light">
+        <!-- Soluções -->
+        <section id="services" class="section py-2xl bg-gray-50 border-t border-gray-100">
             <div class="container">
-                <div class="section-header text-center reveal-fade-up">
-                    <span class="section-tag">Resultados Que Entregamos</span>
-                    <h2 class="section-title">Transformamos Adequação Legal em Vantagem Competitiva</h2>
-                    <p class="section-subtitle">Chega de apagar incêndios diários. Desenvolvemos soluções táticas que estabilizam sua operação e eliminam vulnerabilidades sanitárias pela raiz.</p>
+                <div class="section-header text-center flex-col align-center gap-sm mb-2xl fade-up">
+                    <span class="section-tag text-accent font-bold text-sm uppercase tracking-wider">Resultados Que Entregamos</span>
+                    <h2 class="section-title text-4xl font-extrabold text-dark max-w-2xl">Transformamos Adequação Legal em Vantagem Competitiva</h2>
+                    <p class="section-subtitle text-lg text-muted max-w-xl">Desenvolvemos soluções táticas que estabilizam sua operação e eliminam vulnerabilidades sanitárias pela raiz.</p>
                 </div>
 
-                <div class="services-grid">
+                <div class="services-grid grid grid-3 gap-lg">
                     <!-- Card 1 -->
-                    <article class="service-card reveal-fade-up" style="transition-delay: 0.1s;">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <article class="service-card group bg-white border border-gray-100 rounded-2xl p-xl shadow-sm transition-all hover:shadow-elegant fade-up">
+                        <div class="service-icon w-14 h-14 bg-gray-50 text-dark rounded-xl flex align-center justify-center mb-lg transition-all group-hover:bg-accent group-hover:text-white group-hover:scale-110">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
                         </div>
-                        <h3 class="service-title">Manual de BPF e POPs</h3>
-                        <p class="service-desc">Sofrendo com insegurança antes das fiscalizações? Mapeamos a sua operação, implementamos o Manual de BPF e os Procedimentos Operacionais. Você ganha padronização total, garantindo aprovação legal e produtos sempre seguros.</p>
-                        <a href="#contato" class="service-link">Quero estruturar meus processos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        <h3 class="service-title text-xl font-bold text-dark mb-sm">Manual de BPF e POPs</h3>
+                        <p class="service-desc text-muted mb-lg leading-relaxed">Mapeamos a sua operação, implementamos o Manual de BPF e os POPs. Você ganha padronização total, garantindo aprovação legal.</p>
+                        <a href="#contato" class="service-link flex align-center gap-xs text-dark font-semibold group-hover:text-accent transition-colors">
+                            Estruturar processos <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
                     </article>
 
                     <!-- Card 2 -->
-                    <article class="service-card reveal-fade-up" style="transition-delay: 0.2s;">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                    <article class="service-card group bg-white border border-gray-100 rounded-2xl p-xl shadow-sm transition-all hover:shadow-elegant fade-up delay-100">
+                        <div class="service-icon w-14 h-14 bg-gray-50 text-dark rounded-xl flex align-center justify-center mb-lg transition-all group-hover:bg-accent group-hover:text-white group-hover:scale-110">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
                         </div>
-                        <h3 class="service-title">Assessoria e Auditoria</h3>
-                        <p class="service-desc">A rotina consome seus processos e as regras são ignoradas? Realizamos inspeções rigorosas contínuas no chão de fábrica para corrigir desvios. O resultado é uma operação autogerenciável, onde a segurança acontece sem você precisar vigiar.</p>
-                        <a href="#contato" class="service-link">Quero auditar minha fábrica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        <h3 class="service-title text-xl font-bold text-dark mb-sm">Assessoria e Auditoria</h3>
+                        <p class="service-desc text-muted mb-lg leading-relaxed">Realizamos inspeções rigorosas contínuas no chão de fábrica para corrigir desvios. O resultado é uma operação autogerenciável.</p>
+                        <a href="#contato" class="service-link flex align-center gap-xs text-dark font-semibold group-hover:text-accent transition-colors">
+                            Auditar minha fábrica <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
                     </article>
 
                     <!-- Card 3 -->
-                    <article class="service-card reveal-fade-up" style="transition-delay: 0.3s;">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <article class="service-card group bg-white border border-gray-100 rounded-2xl p-xl shadow-sm transition-all hover:shadow-elegant fade-up delay-200">
+                        <div class="service-icon w-14 h-14 bg-gray-50 text-dark rounded-xl flex align-center justify-center mb-lg transition-all group-hover:bg-accent group-hover:text-white group-hover:scale-110">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg>
                         </div>
-                        <h3 class="service-title">Capacitação Comportamental</h3>
-                        <p class="service-desc">Sua equipe ignora as normas de higiene? Mudamos a mentalidade dos manipuladores através de treinamentos focados na cultura da segurança. O benefício imediato é a drástica redução de falhas humanas e perdas contínuas de insumos.</p>
-                        <a href="#contato" class="service-link">Quero engajar minha equipe <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        <h3 class="service-title text-xl font-bold text-dark mb-sm">Capacitação Comportamental</h3>
+                        <p class="service-desc text-muted mb-lg leading-relaxed">Mudamos a mentalidade dos manipuladores focando na cultura da segurança, reduzindo drasticamente as falhas humanas.</p>
+                        <a href="#contato" class="service-link flex align-center gap-xs text-dark font-semibold group-hover:text-accent transition-colors">
+                            Engajar minha equipe <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- Diferenciais -->
-        <section id="differentials" class="section differentials">
-            <div class="container">
-                <div class="section-header reveal-fade-up">
-                    <span class="section-tag">Sua Vantagem Estratégica</span>
-                    <h2 class="section-title">Por que as indústrias mais seguras escolhem a Qualité?</h2>
+        <!-- Metodologia -->
+        <section id="process" class="section py-2xl">
+            <div class="container max-w-4xl">
+                <div class="section-header text-center flex-col align-center gap-sm mb-2xl fade-up">
+                    <span class="section-tag text-accent font-bold text-sm uppercase tracking-wider">Caminho para a Segurança</span>
+                    <h2 class="section-title text-4xl font-extrabold text-dark">Como Blindamos o Seu Negócio</h2>
+                </div>
+
+                <div class="timeline-container relative">
+                    <!-- Progress Line -->
+                    <div class="timeline-line absolute w-px h-full bg-gray-200 left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 z-0"></div>
+
+                    <!-- Items -->
+                    <div class="timeline-item relative z-10 flex flex-col md:flex-row align-center gap-lg mb-xl fade-up">
+                        <div class="timeline-content md:w-1/2 md:text-right order-2 md:order-1 bg-white p-lg rounded-2xl border border-gray-100 shadow-sm hover:shadow-elegant transition-all">
+                            <h3 class="text-xl font-bold text-dark mb-xs">Raio-X de Vulnerabilidades</h3>
+                            <p class="text-muted text-sm">Mapeamos cada centímetro para descobrir onde o dinheiro escoa e os riscos que geram autuações.</p>
+                        </div>
+                        <div class="timeline-marker w-16 h-16 rounded-full bg-dark text-white font-bold text-xl flex align-center justify-center border-4 border-white shadow-sm order-1 md:order-2 shrink-0 z-10">1</div>
+                        <div class="md:w-1/2 order-3 hidden md:block"></div>
+                    </div>
+
+                    <div class="timeline-item relative z-10 flex flex-col md:flex-row align-center gap-lg mb-xl fade-up">
+                        <div class="md:w-1/2 order-3 md:order-1 hidden md:block"></div>
+                        <div class="timeline-marker w-16 h-16 rounded-full bg-dark text-white font-bold text-xl flex align-center justify-center border-4 border-white shadow-sm order-1 md:order-2 shrink-0 z-10">2</div>
+                        <div class="timeline-content md:w-1/2 order-2 md:order-3 bg-white p-lg rounded-2xl border border-gray-100 shadow-sm hover:shadow-elegant transition-all">
+                            <h3 class="text-xl font-bold text-dark mb-xs">Plano Estratégico</h3>
+                            <p class="text-muted text-sm">Desenhamos a rota mais rápida para a conformidade, respeitando a realidade do fluxo financeiro.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item relative z-10 flex flex-col md:flex-row align-center gap-lg mb-xl fade-up">
+                        <div class="timeline-content md:w-1/2 md:text-right order-2 md:order-1 bg-white p-lg rounded-2xl border border-gray-100 shadow-sm hover:shadow-elegant transition-all">
+                            <h3 class="text-xl font-bold text-dark mb-xs">Blindagem de Processos</h3>
+                            <p class="text-muted text-sm">Criamos e validamos o Manual de BPF e os POPs. Ferramentas práticas que guiam a rotina perfeita.</p>
+                        </div>
+                        <div class="timeline-marker w-16 h-16 rounded-full bg-dark text-white font-bold text-xl flex align-center justify-center border-4 border-white shadow-sm order-1 md:order-2 shrink-0 z-10">3</div>
+                        <div class="md:w-1/2 order-3 hidden md:block"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Elegante -->
+        <section id="faq" class="section py-2xl bg-gray-50 border-t border-gray-100">
+            <div class="container max-w-3xl">
+                <div class="section-header text-center flex-col align-center gap-sm mb-xl fade-up">
+                    <span class="section-tag text-accent font-bold text-sm uppercase tracking-wider">Tire suas Dúvidas</span>
+                    <h2 class="section-title text-4xl font-extrabold text-dark">O que Você Precisa Saber</h2>
                 </div>
                 
-                <div class="diff-grid">
-                    <div class="diff-card reveal-scale" style="transition-delay: 0.1s;">
-                        <div class="diff-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        </div>
-                        <h4>Ciência Aplicada (UFV)</h4>
-                        <p>Não usamos achismos. Aplicamos engenharia de ponta para resolver gargalos complexos na sua linha de produção com alta precisão e previsibilidade.</p>
-                    </div>
-                    <div class="diff-card reveal-scale" style="transition-delay: 0.2s;">
-                        <div class="diff-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </div>
-                        <h4>Prevenção de Crises</h4>
-                        <p>Um recall pode custar a vida da sua empresa. Eliminamos as falhas estruturais antes que elas se tornem manchetes, blindando seu caixa e reputação.</p>
-                    </div>
-                    <div class="diff-card reveal-scale" style="transition-delay: 0.3s;">
-                        <div class="diff-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"></path></svg>
-                        </div>
-                        <h4>Domínio Regulatório</h4>
-                        <p>Descomplicamos o juridiquês da ANVISA e MAPA. Traduzimos as normas mais duras em rotinas claras que sua equipe realmente consegue executar.</p>
-                    </div>
-                    <div class="diff-card reveal-scale" style="transition-delay: 0.4s;">
-                        <div class="diff-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        </div>
-                        <h4>Mudança de Mentalidade</h4>
-                        <p>Regras coladas na parede não funcionam. Ensinamos o "porquê" das ações, transformando seus funcionários em defensores obstinados da higiene.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Metodologia (Processo) -->
-        <section id="process" class="section process bg-light">
-            <div class="container">
-                <div class="section-header text-center reveal-fade-up">
-                    <span class="section-tag">Caminho para a Segurança</span>
-                    <h2 class="section-title">Como Blindamos o Seu Negócio</h2>
-                    <p class="section-subtitle">Um método implacável desenhado para corrigir a sua operação sem travar o ritmo da sua produção ou das suas vendas.</p>
-                </div>
-
-                <div class="timeline-container">
-                    <!-- Item 1 -->
-                    <div class="timeline-item reveal-fade-up">
-                        <div class="timeline-marker">1</div>
-                        <div class="timeline-content">
-                            <h3>Raio-X de Vulnerabilidades</h3>
-                            <p>Mapeamos cada centímetro das suas instalações para descobrir exatamente onde o seu dinheiro está escoando e onde estão os riscos ocultos que podem gerar autuações severas.</p>
-                        </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="timeline-item reveal-fade-up">
-                        <div class="timeline-marker">2</div>
-                        <div class="timeline-content">
-                            <h3>Plano de Guerra Estratégico</h3>
-                            <p>Desenhamos a rota mais rápida e rentável para a conformidade. Definimos o que precisa ser corrigido hoje para afastar perigos imediatos, respeitando a realidade do seu fluxo financeiro.</p>
-                        </div>
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="timeline-item reveal-fade-up">
-                        <div class="timeline-marker">3</div>
-                        <div class="timeline-content">
-                            <h3>Blindagem de Processos</h3>
-                            <p>Criamos e validamos o seu Manual de BPF e os POPs. Ferramentas práticas que guiam a rotina perfeita, e não documentos sem vida projetados para preencher gavetas de escritório.</p>
-                        </div>
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="timeline-item reveal-fade-up">
-                        <div class="timeline-marker">4</div>
-                        <div class="timeline-content">
-                            <h3>Auditoria de Choque</h3>
-                            <p>Testamos a teoria na prática diária. Corrigimos desvios operacionais da sua equipe no ato, garantindo que os novos comportamentos realmente sobrevivam sob a pressão do dia a dia.</p>
-                        </div>
-                    </div>
-                    <!-- Item 5 -->
-                    <div class="timeline-item reveal-fade-up">
-                        <div class="timeline-marker">5</div>
-                        <div class="timeline-content">
-                            <h3>Lucro e Risco Zero</h3>
-                            <p>Sua empresa atinge a maturidade estrutural absoluta. Desperdícios despencam, a equipe trabalha alinhada e o seu negócio está finalmente pronto para crescer de forma inabalável.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Público Atendido -->
-        <section id="audience" class="section audience">
-            <div class="container">
-                <div class="section-header text-center reveal-fade-up">
-                    <span class="section-tag">Áreas de Atuação</span>
-                    <h2 class="section-title">Protegemos Toda a Cadeia de Suprimentos</h2>
-                </div>
-                
-                <div class="audience-grid">
-                    <div class="audience-card reveal-fade-up" style="transition-delay: 0.1s;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l8-6 8 6v13"></path><path d="M14 9V7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"></path></svg>
-                        <h3>Indústrias Alimentícias</h3>
-                    </div>
-                    <div class="audience-card reveal-fade-up" style="transition-delay: 0.2s;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                        <h3>Agroindústrias</h3>
-                    </div>
-                    <div class="audience-card reveal-fade-up" style="transition-delay: 0.3s;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
-                        <h3>Restaurantes</h3>
-                    </div>
-                    <div class="audience-card reveal-fade-up" style="transition-delay: 0.4s;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                        <h3>Hotéis</h3>
-                    </div>
-                    <div class="audience-card reveal-fade-up" style="transition-delay: 0.5s;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                        <h3>Setor Alimentício em Geral</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Benefícios (Checklist) -->
-        <section id="benefits" class="section benefits bg-light">
-            <div class="container benefits-container">
-                <div class="benefits-text reveal-fade-right">
-                    <span class="section-tag">O Impacto no Caixa</span>
-                    <h2 class="section-title">O Lucro Oculto de uma Operação Segura</h2>
-                    <p class="section-desc">Adequação sanitária não é despesa obrigatória, é proteção financeira pura. Entenda exatamente como a estruturação dos seus processos traz um impacto imediato na sua linha de resultados.</p>
-                </div>
-                <div class="benefits-list reveal-fade-left">
-                    <ul>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#1b8b5e" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <div>
-                                <strong>Padronização Rentável</strong>
-                                <p>O mapeamento inteligente dos processos impede o uso incorreto de insumos, derrubando custos de desperdício e aumentando suas margens.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#1b8b5e" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <div>
-                                <strong>Fim do Medo de Fiscais</strong>
-                                <p>Durma tranquilo sabendo que sua fábrica ou restaurante passará ileso por inspeções surpresas, eliminando qualquer ameaça de interdição.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#1b8b5e" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <div>
-                                <strong>Prevenção de Indenizações</strong>
-                                <p>Um único caso de toxinfecção alimentar destrói negócios de anos. Neutralizamos as falhas estruturais que geram processos milionários.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#1b8b5e" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <div>
-                                <strong>Acesso a Grandes Contratos</strong>
-                                <p>Redes exigentes demandam auditorias rigorosas. Com a adequação implantada, sua marca destrava as portas para os clientes mais lucrativos do setor.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="section faq">
-            <div class="container">
-                <div class="section-header text-center reveal-fade-up">
-                    <span class="section-tag">Eliminando Objeções</span>
-                    <h2 class="section-title">O que Você Precisa Saber Antes de Avançar</h2>
-                </div>
-                
-                <div class="accordion-container reveal-fade-up">
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">
-                            Por que não posso apenas copiar um modelo de Manual de BPF genérico?
-                            <span class="accordion-icon"></span>
+                <div class="accordion-container flex-col gap-sm fade-up delay-100">
+                    <div class="accordion-item bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:border-accent">
+                        <button class="accordion-header w-full text-left p-lg flex justify-between align-center font-bold text-dark text-lg" aria-expanded="false">
+                            <span>Por que não posso apenas copiar um modelo genérico?</span>
+                            <div class="accordion-icon w-6 h-6 relative shrink-0"></div>
                         </button>
-                        <div class="accordion-content">
-                            <p>Documentos genéricos são o caminho mais rápido para multas severas. Os fiscais identificam imediatamente quando o texto não reflete a realidade do chão de fábrica. Nós estruturamos um material único, construindo defesas técnicas reais baseadas exclusivamente nas condições e instalações da sua produção.</p>
+                        <div class="accordion-content px-lg pb-0 max-h-0 overflow-hidden transition-all duration-300">
+                            <p class="pb-lg text-muted">Documentos genéricos são o caminho mais rápido para multas severas. Fiscais identificam imediatamente textos que não refletem a realidade. Estruturamos defesas técnicas reais baseadas nas suas instalações.</p>
                         </div>
                     </div>
 
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">
-                            Isso não vai custar muito caro para o porte atual da minha operação?
-                            <span class="accordion-icon"></span>
+                    <div class="accordion-item bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:border-accent">
+                        <button class="accordion-header w-full text-left p-lg flex justify-between align-center font-bold text-dark text-lg" aria-expanded="false">
+                            <span>Isso não vai custar muito caro para o porte atual?</span>
+                            <div class="accordion-icon w-6 h-6 relative shrink-0"></div>
                         </button>
-                        <div class="accordion-content">
-                            <p>O que custa caro é uma interdição inesperada, a perda de um lote inteiro de produtos ou um processo judicial gerado por contaminação. O valor investido em nossa engenharia preventiva se paga nos primeiros meses através da redução brutal de desperdícios operacionais e da segurança total contra multas.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">
-                            A adequação vai interromper minhas vendas ou travar minha produção?
-                            <span class="accordion-icon"></span>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Absolutamente não. Nosso método foi criado no chão de fábrica e para o chão de fábrica. Inserimos as melhorias gradualmente e capacitamos sua equipe nos momentos adequados, sem quebrar a fluidez e a agilidade que o dia a dia do seu negócio exige.</p>
+                        <div class="accordion-content px-lg pb-0 max-h-0 overflow-hidden transition-all duration-300">
+                            <p class="pb-lg text-muted">O que custa caro é uma interdição inesperada. O valor investido em engenharia preventiva se paga nos primeiros meses através da redução de desperdícios e segurança contra multas.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final CTA -->
-        <section id="contato" class="section cta-section">
-            <div class="container">
-                <div class="cta-box reveal-scale">
-                    <h2>Quanto custa o risco que a sua empresa está correndo hoje?</h2>
-                    <p>Não espere uma notificação da vigilância sanitária ou uma crise na mídia para tomar uma atitude. Descubra agora as vulnerabilidades do seu negócio e blinde o seu caixa.</p>
-                    <a href="mailto:contato@qualiteconsultoria.com.br" class="btn btn-primary btn-large">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 4l10 8 10-8"></path></svg>
-                        Agendar Diagnóstico Gratuito
-                    </a>
+        <!-- CTA Final -->
+        <section id="contato" class="section py-2xl relative overflow-hidden">
+            <div class="container relative z-10">
+                <div class="cta-box bg-dark text-white rounded-3xl p-2xl text-center shadow-elegant relative overflow-hidden fade-up">
+                    <!-- Glow CTA -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent pointer-events-none"></div>
+                    <div class="relative z-10 max-w-2xl mx-auto flex-col align-center gap-lg">
+                        <h2 class="text-4xl font-extrabold leading-tight">Quanto custa o risco que a sua empresa corre hoje?</h2>
+                        <p class="text-lg text-gray-300">Descubra agora as vulnerabilidades do seu negócio e blinde o seu caixa contra multas e processos.</p>
+                        <a href="mailto:contato@qualiteconsultoria.com.br" class="btn btn-primary btn-large magnetic-btn inline-flex mt-md">
+                            Agendar Diagnóstico Gratuito
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-col brand-col">
-                <a href="#" class="logo footer-logo">
-                    <span class="logo-text">Qualité</span>
-                    <span class="logo-dot">.</span>
+    <!-- Footer Moderno -->
+    <footer class="footer bg-white border-t border-gray-100 pt-2xl pb-lg">
+        <div class="container grid grid-3 gap-2xl mb-2xl">
+            <div class="footer-col brand-col flex-col gap-md">
+                <a href="#" class="logo flex align-center gap-sm">
+                    <span class="logo-text font-bold text-2xl text-dark">Qualité<span class="text-accent">.</span></span>
                 </a>
-                <p>Engenharia estratégica dedicada a blindar negócios contra riscos sanitários e multiplicar a rentabilidade através de processos seguros desde 2009.</p>
+                <p class="text-muted text-sm leading-relaxed max-w-sm">Engenharia estratégica dedicada a blindar negócios contra riscos sanitários e multiplicar a rentabilidade desde 2009.</p>
             </div>
             
-            <div class="footer-col">
-                <h4>Links Rápidos</h4>
-                <ul>
-                    <li><a href="#hero">Início</a></li>
-                    <li><a href="#about">Quem Somos</a></li>
-                    <li><a href="#services">Nossas Soluções</a></li>
-                    <li><a href="#process">Como Atuamos</a></li>
+            <div class="footer-col flex-col gap-md">
+                <h4 class="font-bold text-dark">Navegação</h4>
+                <ul class="flex-col gap-sm text-muted font-medium text-sm">
+                    <li><a href="#hero" class="hover:text-accent transition-colors">Início</a></li>
+                    <li><a href="#about" class="hover:text-accent transition-colors">Quem Somos</a></li>
+                    <li><a href="#services" class="hover:text-accent transition-colors">Nossas Soluções</a></li>
                 </ul>
             </div>
             
-            <div class="footer-col">
-                <h4>Fale Conosco</h4>
-                <ul class="contact-info">
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="footer-col flex-col gap-md">
+                <h4 class="font-bold text-dark">Contato</h4>
+                <ul class="contact-info flex-col gap-sm text-muted text-sm font-medium">
+                    <li class="flex align-center gap-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                         Tremembé – SP
                     </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <li class="flex align-center gap-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path></svg>
                         contato@qualiteconsultoria.com.br
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        Atendimento Comercial
                     </li>
                 </ul>
             </div>
         </div>
         
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2026 Qualité Consultoria em Alimentos. Todos os direitos reservados. <span>Engenheiros Responsáveis: Alexandra Nunes Genari & Ricardo Genari (UFV)</span></p>
-            </div>
+        <div class="container border-t border-gray-100 pt-lg flex flex-col md:flex-row justify-between align-center gap-md text-xs text-gray-400 font-medium">
+            <p>&copy; 2026 Qualité Consultoria em Alimentos. Todos os direitos reservados.</p>
+            <p>Engenheiros Responsáveis: Alexandra & Ricardo Genari (UFV)</p>
         </div>
     </footer>
 
-    <!-- Botão Flutuante WhatsApp -->
-    <a href="#" class="fab-whatsapp" aria-label="Contato pelo WhatsApp">
-        <svg viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    <!-- FABs -->
+    <a href="#" class="fab-whatsapp magnetic-btn" aria-label="Contato pelo WhatsApp">
+        <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
     </a>
-
-    <!-- Botão Voltar ao Topo -->
-    <button class="back-to-top" aria-label="Voltar ao topo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
 
     <script src="script.js"></script>
 </body>
