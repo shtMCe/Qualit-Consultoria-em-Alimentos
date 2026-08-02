@@ -15,11 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateScrollState = () => {
         const currentScroll = window.scrollY;
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> main
         // Efeito Header
         if (currentScroll > 50) {
             header.classList.add('scrolled');
@@ -37,15 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (navLink) {
                 if (currentScroll >= top && currentScroll < top + height) {
                     navLink.classList.add('active');
-<<<<<<< HEAD
                     navLink.setAttribute('aria-current', 'true');
                 } else {
                     navLink.classList.remove('active');
                     navLink.removeAttribute('aria-current');
-=======
-                } else {
-                    navLink.classList.remove('active');
->>>>>>> main
                 }
             }
         });
@@ -87,11 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Intersection Observer (Revelação de Elementos) - Padrão Vercel
     const revealElements = document.querySelectorAll('.reveal');
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> main
     const revealOptions = {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px"
@@ -127,11 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Alterna o atual
             this.setAttribute('aria-expanded', !isExpanded);
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> main
             if (!isExpanded) {
                 content.style.maxHeight = content.scrollHeight + "px";
             } else {
