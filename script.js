@@ -1,39 +1,59 @@
 /**
- * Qualité Consultoria - Scripts Principais
- * Arquitetura Vanilla JS modular, garantindo performance e acessibilidade (0 dependências).
+ * Qualité Consultoria - Core Engine
+ * Arquitetura Vanilla JS orientada a performance e acessibilidade.
+ * Utiliza requestAnimationFrame para scroll otimizado.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================================================
-    // 1. Navbar Inteligente & Scroll Effect
-    // ==========================================================================
-    const header = document.getElementById('header');
-    const backToTopBtn = document.querySelector('.back-to-top');
+    'use strict';
 
-    const handleScroll = () => {
-        const scrollY = window.scrollY;
+    // 1. Otimização de Scroll com requestAnimationFrame
+    const header = document.querySelector('[data-header]');
+    const sections = document.querySelectorAll('section[id]');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateScrollState = () => {
+        const currentScroll = window.scrollY;
         
-        // Efeito do Header
-        if (scrollY > 50) {
+        // Efeito Header
+        if (currentScroll > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
 
-        // Botão voltar ao topo
-        if (scrollY > 500) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
+        // ScrollSpy Lógica Otimizada
+        sections.forEach(sec => {
+            const top = sec.offsetTop - 100;
+            const height = sec.offsetHeight;
+            const id = sec.getAttribute('id');
+            const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
+
+            if (navLink) {
+                if (currentScroll >= top && currentScroll < top + height) {
+                    navLink.classList.add('active');
+                } else {
+                    navLink.classList.remove('active');
+                }
+            }
+        });
+
+        lastScrollY = currentScroll;
+        ticking = false;
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // ==========================================================================
-    // 2. Menu Mobile (Toggle e Fechamento Automático)
-    // ==========================================================================
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateScrollState);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Iniciar estado
+    updateScrollState();
+
+    // 2. Navegação Mobile Acessível
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -41,137 +61,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleMenu = () => {
         const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
         mobileToggle.setAttribute('aria-expanded', !isExpanded);
-        mobileToggle.classList.toggle('active');
-        navbar.classList.toggle('active');
+        navbar.classList.toggle('is-active');
     };
 
-    mobileToggle.addEventListener('click', toggleMenu);
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', toggleMenu);
+    }
 
-    // Fecha o menu ao clicar em qualquer link (Mobile)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (navbar.classList.contains('active')) {
-                toggleMenu();
-            }
+            if (navbar.classList.contains('is-active')) toggleMenu();
         });
     });
 
-    // ==========================================================================
-    // 3. Scroll Suave para Âncoras
-    // ==========================================================================
-    const smoothScroll = (targetId) => {
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    };
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if(href !== "#") {
-                e.preventDefault();
-                smoothScroll(href);
-            }
-        });
-    });
-
-    // Evento específico para o Back to Top (href="#")
-    backToTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ==========================================================================
-    // 4. Scroll Reveal Animations (Intersection Observer)
-    // ==========================================================================
-    const revealElements = document.querySelectorAll(
-        '.reveal-fade-up, .reveal-fade-left, .reveal-fade-right, .reveal-scale'
-    );
-
+    // 3. Intersection Observer (Revelação de Elementos) - Padrão Vercel
+    const revealElements = document.querySelectorAll('.reveal');
+    
     const revealOptions = {
-        threshold: 0.15,
+        threshold: 0.1,
         rootMargin: "0px 0px -50px 0px"
     };
 
-    const revealCallback = (entries, observer) => {
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active-reveal');
-                // Opcional: parar de observar após a primeira animação para melhor performance
+                entry.target.classList.add('is-visible');
+                // Desconecta após animar para salvar memória
                 observer.unobserve(entry.target);
             }
         });
-    };
+    }, revealOptions);
 
-    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+    revealElements.forEach(el => revealOnScroll.observe(el));
 
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-    });
+    // 4. Accordion / FAQ Acessível (WCAG Compliance)
+    const accordions = document.querySelectorAll('.accordion-trigger');
 
-    // ==========================================================================
-    // 5. ScrollSpy - Destaque automático do menu durante o scroll
-    // ==========================================================================
-    const sections = document.querySelectorAll('section[id]');
-    
-    const scrollSpy = () => {
-        const scrollY = window.scrollY;
-        
-        sections.forEach(current => {
-            const sectionHeight = current.offsetHeight;
-            // Pega o top descontando o tamanho do header fixo
-            const sectionTop = current.offsetTop - 100; 
-            const sectionId = current.getAttribute('id');
-            
-            const navItem = document.querySelector(`.nav-list a[href="#${sectionId}"]`);
-            
-            if(navItem) {
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    navItem.classList.add('active');
-                } else {
-                    navItem.classList.remove('active');
-                }
-            }
-        });
-    };
+    accordions.forEach(acc => {
+        acc.addEventListener('click', function(e) {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            const content = document.getElementById(this.getAttribute('aria-controls'));
 
-    window.addEventListener('scroll', scrollSpy, { passive: true });
-
-    // ==========================================================================
-    // 6. FAQ Accordion (Lógica e Acessibilidade)
-    // ==========================================================================
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            // Acessibilidade e Estado
-            const isExpanded = header.getAttribute('aria-expanded') === 'true';
-            
-            // Controle visual do conteúdo
-            const content = header.nextElementSibling;
-
-            // Fechar os outros (Comportamento clássico de accordion)
-            accordionHeaders.forEach(otherHeader => {
-                if(otherHeader !== header) {
-                    otherHeader.setAttribute('aria-expanded', 'false');
-                    otherHeader.nextElementSibling.style.maxHeight = null;
+            // Fecha os outros (Opcional, mas mantém a tela limpa)
+            accordions.forEach(otherAcc => {
+                if (otherAcc !== this) {
+                    otherAcc.setAttribute('aria-expanded', 'false');
+                    document.getElementById(otherAcc.getAttribute('aria-controls')).style.maxHeight = null;
                 }
             });
 
-            // Toggle do clicado
-            header.setAttribute('aria-expanded', !isExpanded);
+            // Alterna o atual
+            this.setAttribute('aria-expanded', !isExpanded);
             
             if (!isExpanded) {
                 content.style.maxHeight = content.scrollHeight + "px";
             } else {
                 content.style.maxHeight = null;
+            }
+        });
+
+        // Suporte a teclado (Enter e Space)
+        acc.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
             }
         });
     });
